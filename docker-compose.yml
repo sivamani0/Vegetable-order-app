@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    image: vegetable-order-app-app 
+    container_name:  vegetable-order-app-mongo-1
     ports:
       - "3000:3000"
     environment:
