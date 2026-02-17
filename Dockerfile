@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /transaction
+WORKDIR /vegetable-app
 
 COPY package*.json ./
 
