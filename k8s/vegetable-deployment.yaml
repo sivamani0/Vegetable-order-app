@@ -18,6 +18,19 @@ spec:
           image: sivamani07/vegetable-order-app:v1
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: vegetable-app-config
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: vegetable-app-config
+                  key: MONGO_URL
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: vegetable-app-config
+                  key: PORT
+            - name: SESSION_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: vegetable-app-config
+                  key: SESSION_SECRET
