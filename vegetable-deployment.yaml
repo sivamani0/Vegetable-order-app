@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: vegetable-container
-          image: gowrish006/vegetable-app:latest
+          image: sivamani07/vegetable-order-app:v1
           ports:
             - containerPort: 3000
