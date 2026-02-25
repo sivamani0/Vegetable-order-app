@@ -2,10 +2,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-mongo
-  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.mongo.replicas }}
-  serviceName: {{ .Values.mongo.serviceName }}
+  serviceName: {{ .Release.Name }}-mongo
   selector:
     matchLabels:
       app: {{ .Values.mongo.labels.app }}
