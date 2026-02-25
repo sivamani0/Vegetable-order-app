@@ -1,0 +1,81 @@
+namespace: siva-ns
+
+
+# ConfigMap values
+
+namespace: siva-ns
+
+config:
+  MONGO_URL: "mongodb://mongo:27017/vegetableDB"
+  PORT: "3000"
+  SESSION_SECRET: "vegetable-secret"
+  MONGO_INITDB_DATABASE: "vegetableDB"
+
+secret:
+  SESSION_SECRET: "vegetable-secret"
+
+# App Deployment values
+
+replicas: 2
+
+deployment:
+  labels:
+    app: vegetable
+  name: vegetable-container
+  port: 3000
+
+image:
+  repository: sivamani07/vegetable-order-app
+  tag: v1
+
+
+# App Service values
+
+service:
+  app: vegetable
+  port: 80
+  targetPort: 3000
+  type: LoadBalancer
+
+
+# Mongo values 
+
+mongo:
+  replicas: 5
+  serviceName: mongo
+  labels:
+    app: mongo
+  image:
+    repository: mongo
+    tag: "6"
+  port: 27017
+  storageClassName: retail-sc
+  storage: 1Gi
+
+
+#mongo-service
+  service:
+    port: 27017
+    targetPort: 27017
+  mongo:
+  service:
+    clusterIP: None
+
+
+# PVC values 
+
+pvc:
+  name: mongo-pvc
+  accessMode: ReadWriteOnce
+  storage: 2Gi
+  storageClassName: retail-sc
+
+
+# StorageClass values
+
+storageClass:
+  name: retail-sc
+  provisioner: ebs.csi.aws.com
+  type: gp3
+  reclaimPolicy: Retain
+  volumeBindingMode: WaitForFirstConsumer
