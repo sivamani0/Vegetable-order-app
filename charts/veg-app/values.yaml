@@ -1,4 +1,5 @@
-replicas: 2
+namespace: sivamani-ns
+replicas: 6
 
 deployment:
   labels:
