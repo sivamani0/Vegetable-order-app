@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vegetable-oredr-app
+  name: vegetable-order-app
   namespace: argocd
 spec:
   project: default
@@ -9,7 +9,7 @@ spec:
   source:
     # GitHub Pages URL (Helm repository)
     repoURL: https://sivamani0.github.io/Vegetable-order-app
-    chart: vegetable-app
+    chart: veg-app
     # Deploy latest released chart version
     targetRevision: "*"  # it will deploy the latest version of the chart available in the helm repository
     helm:
@@ -25,4 +25,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true # This option allows Argo CD to create the target namespace if it does not already exist. In this case, if the "murali-ns" namespace does not exist, Argo CD will create it automatically during the synchronization process.
+      - CreateNamespace=true
